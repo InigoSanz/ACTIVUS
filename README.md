@@ -153,4 +153,4 @@ Contraseña: admin123
 
 ACTIVUS está bajo la Licencia MIT.
 
-🎯 ¡Ahora estás listo para usar ACTIVUS! Si tienes dudas o mejoras abre un issue en GitHub. 🚀
+Así puedes probar ACTIVUS, si tienes dudas o mejoras abre un issue en GitHub. 
