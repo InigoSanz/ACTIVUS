@@ -4,8 +4,6 @@ ACTIVUS es una aplicación web diseñada para analizar la compatibilidad entre m
 
 🏥 ¿Qué hace ACTIVUS?
 
-✔️ 7️⃣ Recuperación de contraseña con envío de correo electrónico (con seguridad).
-
 ✔️ 1️⃣ Consulta y búsqueda de medicamentos en una base de datos local.
 
 ✔️ 2️⃣ Comparación de medicamentos para detectar interacciones.
@@ -52,7 +50,7 @@ Flask-CORS para comunicación segura entre frontend y API.
 
 🔹 1️⃣ Clonar el Repositorio
 
- git clone https://github.com/usuario/ACTIVUS.git
+ git clone https://github.com/InigoSanz/ACTIVUS
  cd ACTIVUS
 
 🔹 2️⃣ Configuración del Backend (Spring Boot + MySQL)
@@ -153,4 +151,6 @@ Contraseña: admin123
 
 ACTIVUS está bajo la Licencia MIT.
 
-Así puedes probar ACTIVUS, si tienes dudas o mejoras abre un issue en GitHub. 
+🎯 Puede probar el proyecto, si tienes dudas o mejoras abre un issue en GitHub.
+
+⚠️ Disclaimer: Este README puede contener errores para el despliegue de la aplicación. Se recomienda consultar la documentación en la memoria y los anexos para más detalles.
