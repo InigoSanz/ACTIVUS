@@ -1,0 +1,50 @@
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+
+# Excluir carpetas y archivos innecesarios de la API en Python
+/api/__pycache__/
+/api/python_modules/
+/api/venv/
+/api/.venv/
+*.pyc
+*.pyo
+*.pyd
+
+# Archivos de configuración local y logs
+*.log
+*.env
+.env*
+
+# Ignorar archivos generados por MySQL Workbench
+*.mwb

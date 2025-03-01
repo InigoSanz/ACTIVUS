@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title></title>
+</head>
+<body>
+<script>
+    /**
+     * Función para comparar dos medicamentos.
+     * Toma los valores de los inputs con ids 'medicamento1' y 'medicamento2' y realiza una solicitud a una API.
+     */
+    function compararMedicamentos() {
+        const medicamento1 = document.getElementById('medicamento1').value;
+        const medicamento2 = document.getElementById('medicamento2').value;
+
+        // Verifica si ambos campos no están vacíos
+        if (medicamento1 && medicamento2) {
+            const data = {
+                medicamento1: medicamento1,
+                medicamento2: medicamento2
+            };
+
+            console.log("Datos a enviar:", data);
+
+            // Realiza una solicitud fetch a la API para comparar los medicamentos
+            fetch('http://127.0.0.1:5000/pa_medicamentos', { // Asegúrate de que la URL es correcta
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => {
+                    // Verifica si la respuesta es correcta
+                    if (!response.ok) {
+                        throw new Error('Error en la solicitud');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Maneja los datos recibidos de la API
+                    console.log("Datos recibidos:", data);
+                    let resultadoHTML = '<h3>Resultados de la Comparación:</h3>';
+                    if (data.compatibilidad && data.compatibilidad.length > 0) {
+                        // Itera sobre los resultados y genera HTML para cada comparación
+                        data.compatibilidad.forEach(resultado => {
+                            let icon = '';
+                            // Agrega un icono basado en el mensaje de compatibilidad
+                            if (resultado.mensaje === `${resultado.principioActivo1} y ${resultado.principioActivo2} son compatibles.`) {
+                                icon = '<i class="fas fa-check-circle compatible-icon icono-compatibilidad"></i>';
+                            } else if (resultado.mensaje === `${resultado.principioActivo1} y ${resultado.principioActivo2} no son compatibles.`) {
+                                icon = '<i class="fas fa-times-circle incompatible-icon icono-compatibilidad"></i>';
+                            } else if (resultado.mensaje === `${resultado.principioActivo1} y ${resultado.principioActivo2} pueden ser peligrosos juntos.`) {
+                                icon = '<i class="fas fa-exclamation-circle dangerous-icon icono-compatibilidad"></i>';
+                            } else if (resultado.mensaje === `No se sabe si ${resultado.principioActivo1} y ${resultado.principioActivo2} son compatibles.`) {
+                                icon = '<i class="fas fa-question-circle unknown-icon icono-compatibilidad"></i>';
+                            }
+                            resultadoHTML += `<div class="result-container">`;
+                            resultadoHTML += `<p>${resultado.medicamento1} (${resultado.principioActivo1})</p>`;
+                            resultadoHTML += `<p>${resultado.medicamento2} (${resultado.principioActivo2})</p>`;
+                            resultadoHTML += `<p>${resultado.mensaje} ${icon}</p>`;
+                            resultadoHTML += `</div>`;
+                        });
+                    } else {
+                        // Mensaje si no se encontraron resultados
+                        resultadoHTML += '<p>No se encontraron resultados.</p>';
+                    }
+                    // Inserta el HTML generado en el elemento con id 'resultadoComparacion'
+                    document.getElementById('resultadoComparacion').innerHTML = resultadoHTML;
+                })
+                .catch(error => {
+                    // Maneja errores en la solicitud
+                    console.error('Error:', error);
+                    document.getElementById('resultadoComparacion').innerHTML = '<p style="color: red;">Ocurrió un error al realizar la comparación. Por favor, intente nuevamente.</p>';
+                });
+        } else {
+            // Alerta si alguno de los campos de medicamento está vacío
+            alert('Por favor, ingrese ambos nombres de medicamentos.');
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<html th:lang="#{principal.lang}"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout/layout}">
+<head>
+    <meta charset="utf-8"/>
+    <title th:text="#{app.login.titulo}"></title>
+</head>
+<body>
+<div layout:fragment="cabecera">
+    <div class="text-center-container">
+        <h1 th:text="#{cambio.password.title}"></h1>
+    </div>
+    <br>
+</div>
+<div layout:fragment="contenido">
+    <!-- Main Content-->
+    <main class="mb-4">
+        <div class="container px-4 px-lg-5">
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6">
+                    <div class="card text-center shadow-lg">
+                        <div class="card-body">
+                            <p class="card-text" th:text="#{cambio.password.text}"></p>
+                            <p class="card-text" th:text="#{cambio.password.text1}"></p>
+                            <a th:href="@{/}" class="btn btn-primary btn-rounded" th:text="#{home.volver.inicio}"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>

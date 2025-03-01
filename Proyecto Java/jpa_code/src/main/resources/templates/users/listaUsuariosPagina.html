@@ -1,0 +1,127 @@
+<html th:lang="#{principal.lang}"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sd="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{/layout/layout}">
+<head>
+    <meta charset="utf-8"/>
+    <title th:text="#{app.login.titulo}"></title>
+    <style>
+        .table thead th {
+            background-color: #343a40;
+            color: #fff;
+        }
+
+        .table tbody tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        .table td, .table th {
+            vertical-align: middle;
+        }
+
+        .btn-sm {
+            font-size: 0.875rem;
+            padding: 0.25rem 0.5rem;
+        }
+
+        .table th, .table td {
+            text-align: center;
+        }
+
+        .pagination .page-item.active .page-link {
+            background-color: #343a40;
+            border-color: #343a40;
+            color: #fff; /* Color del número en el botón activo */
+        }
+
+        .pagination .page-link {
+            color: #fff; /* Color del número en los botones */
+            background-color: #343a40;
+            border-radius: 50%;
+        }
+
+        .pagination .page-item {
+            margin: 0 5px; /* Espacio entre los botones de paginación */
+        }
+
+        .pagination {
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+<div layout:fragment="cabecera">
+    <div class="text-center-container">
+        <h1 th:text="#{usuarios.register.modificar}"></h1>
+    </div>
+    <br>
+</div>
+<div layout:fragment="contenido">
+    <!-- Main Content-->
+    <div class="box-body">
+        <div class="d-flex justify-content-between mb-3">
+            <span sd:page-size-selector="javascript"></span>
+        </div>
+        <form action="#" th:action="@{/}" method="post">
+            <div class="table-responsive">
+                <!-- Opcion 1 : tabla con contenido (recomendable en caso de listas-->
+                <table class="table table-bordered table-hover text-center">
+                    <thead class="table-dark">
+                    <tr>
+                        <th th:text="#{usuarios.list.Usuario}"></th>
+                        <th th:text="#{usuarios.list.email}"></th>
+                        <th sd:authorize="hasRole('ADMIN')" th:text="#{usuarios.habilitarSN}"></th>
+                        <th th:text="#{general.detalles}"></th>
+                        <th th:text="#{general.eliminar}"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="elemento , posicion : ${listausuarios}">
+                        <td th:text="${elemento.nombreUsuario}"></td>
+                        <td th:text="${elemento.email}"></td>
+                        <td sd:authorize="hasRole('ADMIN')">
+                            <button type="submit" th:classappend="${elemento.active} ? 'btn btn-warning btn-sm' : 'btn btn-success btn-sm'"
+                                                  th:formaction="'/users/'+ ${elemento.id} +'/habilitar'">
+                                <i class="fas fa-check"></i>
+                                <span th:text="${elemento.active} ? #{general.deshabilitar} : #{general.habilitar}"></span>
+                            </button>
+                        </td>
+                        <td>
+                            <!-- link para ver  con texto "ver"-->
+                            <a th:href="@{'/users/'+ ${elemento.id}}" class="btn btn-info btn-sm">
+                                <i class="fas fa-eye"></i> <span th:text="#{general.detalles}"></span>
+                            </a>
+                        </td>
+                        <td>
+                            <!-- boton para borrar-->
+                            <button type="submit" class="btn btn-danger btn-sm" th:formaction="'/users/'+ ${elemento.id} +'/delete'">
+                                <i class="fas fa-trash-alt"></i> <span th:text="#{general.eliminar}"></span>
+                            </button>
+                        </td>
+                    </tr>
+                    <!--Mostramos una ultima fila con información cuando no hay registros -->
+                    <tr th:if="${listausuarios == null || #lists.isEmpty(listausuarios)}">
+                        <td colspan="5" class="text-center" th:text="#{usuarios.noUsuarios}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </form>
+    </div>
+    <!-- preparamos el div para poner los numeros de pagina-->
+    <div th:if="${listausuarios != null && !#lists.isEmpty(listausuarios)}">
+        <div class="d-flex justify-content-center">
+            <nav>
+                <ul class="pagination" sd:pagination="full">
+                    <!--  si hay menos del numero minimo de registros no muestro la barra-->
+                    <li th:if="${listausuarios.totalPages > 0}" th:each="pageNumber : ${pageNumbers}" th:classappend="${pageNumber == listausuarios.number + 1} ? 'page-item active' : 'page-item'">
+                        <a href="#" th:href="@{'/users'(size=${listausuarios.size}, page=${pageNumber})}" class="page-link" th:text="${pageNumber}"></a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+</body>
+</html>

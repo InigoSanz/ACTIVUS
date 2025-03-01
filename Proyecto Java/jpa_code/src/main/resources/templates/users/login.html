@@ -1,0 +1,68 @@
+<html th:lang="#{principal.lang}"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout/layout}">
+<head>
+    <meta charset="utf-8"/>
+    <title th:text="#{app.login.titulo}"></title>
+    <style>
+        .btn-centered {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 20px; /* Ajusta el padding según tus necesidades */
+            width: 100%; /* Asegura que los botones se expandan a todo el ancho */
+        }
+    </style>
+</head>
+<body>
+<div layout:fragment="cabecera">
+    <div class="text-center-container">
+        <h1 th:text="#{home.login.login1}"></h1>
+    </div>
+    <br>
+</div>
+<div layout:fragment="contenido">
+    <!-- Main Content-->
+    <main class="mb-4">
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <!-- Mensaje de éxito -->
+                    <div th:if="${successMessage}" class="alert alert-success" role="alert">
+                        <p th:text="${successMessage}"></p>
+                    </div>
+                    <div class="card shadow-lg" style="border-radius: 25px;">
+                        <div class="card-body p-md-5">
+                            <p th:text="#{home.login.login2}"></p>
+                            <div class="my-5">
+                                <!-- Formulario de inicio de sesión -->
+                                <form id="loginForm" th:action="@{/users/login}" role="form" method="post" th:object="${loginForm}">
+                                    <div class="form-floating">
+                                        <input class="form-control" id="username" name="username" type="text" placeholder="Ingresa tu nombre de usuario..." data-sb-validations="required"/>
+                                        <label for="username" th:text="#{home.login.login3}"></label>
+                                        <div class="invalid-feedback" data-sb-feedback="username:required" th:text="#{home.login.login4}"></div>
+                                    </div>
+                                    <div class="form-floating">
+                                        <input class="form-control" id="password" name="password" type="password" placeholder="Ingresa tu contraseña..." data-sb-validations="required"/>
+                                        <label for="password" th:text="#{home.login.login5}"></label>
+                                        <div class="invalid-feedback" data-sb-feedback="password:required" th:text="#{home.login.login6}"></div>
+                                    </div>
+                                    <br/>
+                                    <div class="d-flex flex-column flex-md-row justify-content-between">
+                                        <button class="btn btn-primary text-uppercase btn-rounded me-2 mb-2 mb-md-0 btn-centered" id="loginButton" type="submit" th:text="#{home.login.btn1}"></button>
+                                        <a class="btn text-uppercase btn-rounded me-2 mb-2 mb-md-0 btn-centered" style="background-color: #e89543; color: #fff;" th:href="@{/users/hasOlvidadoTuPassword}" th:text="#{home.login.btn3}"></a>
+                                        <a class="btn btn-secondary text-uppercase btn-rounded mb-2 mb-md-0 btn-centered" th:href="@{/users/registro}" th:text="#{home.login.btn2}"></a>
+                                    </div>
+                                    <div class="alert" th:if="${errorMessage}" th:text="${errorMessage}"></div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+com.java_project.jpa_code
+com.java_project.jpa_code.api
+com.java_project.jpa_code.cargainicial
+com.java_project.jpa_code.config
+com.java_project.jpa_code.config.details
+com.java_project.jpa_code.config.service
+com.java_project.jpa_code.dto
+com.java_project.jpa_code.exception
+com.java_project.jpa_code.model
+com.java_project.jpa_code.repository
+com.java_project.jpa_code.service
+com.java_project.jpa_code.service.mapper
+com.java_project.jpa_code.util
+com.java_project.jpa_code.web.controller

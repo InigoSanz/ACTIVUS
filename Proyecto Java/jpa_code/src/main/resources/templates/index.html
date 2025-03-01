@@ -1,0 +1,46 @@
+<html th:lang="#{principal.lang}"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout/layout}">
+<head>
+    <meta charset="utf-8" />
+    <title th:text="#{app.title}">Inicio - Activus</title>
+    <!-- Bootstrap CSS -->
+    <style>
+        .highlight-image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem 0; /* Espaciado alrededor de la imagen */
+        }
+
+        .highlight-image {
+            width: 80%; /* Ajusta el ancho de la imagen */
+            height: auto; /* Mantiene la relación de aspecto */
+            border-radius: 15px; /* Bordes redondeados */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para resaltar la imagen */
+            border: 5px solid #6c757d; /* Borde para armonizar con el estilo general */
+            transition: transform 0.3s ease; /* Transición suave para el efecto hover */
+        }
+
+        .highlight-image:hover {
+            transform: scale(1.05); /* Aumenta el tamaño de la imagen al pasar el ratón por encima */
+        }
+    </style>
+</head>
+<body>
+<div layout:fragment="cabecera">
+    <div class="text-center-container">
+        <h1>ACTIVUS</h1>
+    </div>
+    <br>
+</div>
+<div layout:fragment="contenido">
+    <div class="container">
+        <div class="container highlight-image-container">
+            <img th:src="@{/assets/img/PruebaBien.png}" class="highlight-image" alt="Imagen destacada">
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<html th:lang="#{principal.lang}"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout/layout}">
+<head>
+    <meta charset="utf-8"/>
+    <title th:text="#{app.title}"></title>
+    <style>
+        .progress-container {
+            width: 100%;
+            background-color: #f3f3f3;
+            border-radius: 5px;
+            margin: 20px 0;
+            overflow: hidden;
+            height: 30px;
+            position: relative;
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background-color: #4caf50;
+            text-align: center;
+            line-height: 30px;
+            color: white;
+            transition: width 0.5s;
+            position: absolute;
+        }
+
+        .progress-text {
+            margin-top: 10px;
+            text-align: center;
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        .progress-bar-text {
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 0;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+<div layout:fragment="cabecera">
+    <div class="text-center-container">
+        <h1 th:text="#{app.pacientes.titulo}"></h1>
+    </div>
+    <br>
+</div>
+<div layout:fragment="contenido">
+    <main class="mb-4">
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <!-- Contenido para Pacientes -->
+                    <div class="progress-container">
+                        <div id="progress-bar" class="progress-bar"></div>
+                        <div id="progress-bar-text" class="progress-bar-text">0%</div>
+                    </div>
+                    <div class="progress-text" th:text="#{app.pacientes.pacientes1}"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>

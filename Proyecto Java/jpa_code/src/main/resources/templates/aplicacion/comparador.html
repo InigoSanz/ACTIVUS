@@ -1,0 +1,86 @@
+<html th:lang="#{principal.lang}"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout/layout}">
+<head>
+    <meta charset="utf-8"/>
+    <title th:text="#{app.title}"></title>
+    <!-- Carga de jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
+    <!-- Font Awesome icons -->
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <style>
+        .mb-3 {
+            margin-bottom: 1rem !important;
+        }
+        .btn-separado {
+            margin-top: 1.5rem;
+        }
+        .resultado-comparacion {
+            font-size: 0.9rem;
+        }
+        .resultado-comparacion p {
+            margin-bottom: 0.5rem;
+        }
+        .icono-compatibilidad {
+            margin-left: 10px;
+        }
+        .compatible-icon {
+            color: green;
+        }
+        .incompatible-icon {
+            color: red;
+        }
+        .dangerous-icon {
+            color: orange;
+        }
+        .unknown-icon {
+            color: gray;
+        }
+        .result-container {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+<div layout:fragment="cabecera">
+    <div class="text-center-container">
+        <h1 th:text="#{app.comparador.titulo}"></h1>
+    </div>
+    <br>
+</div>
+<div layout:fragment="contenido">
+    <main class="mb-4">
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <!-- Card con el formulario para ingresar los nombres de los medicamentos -->
+                    <div class="card shadow-lg" style="border-radius: 25px;">
+                        <div class="card-body p-md-5">
+                            <div class="my-5">
+                                <div class="form-floating mb-3">
+                                    <input class="form-control" id="medicamento1" type="text" placeholder="Ingresa el nombre del primer medicamento" required/>
+                                    <label for="medicamento1" th:text="#{app.comparador.medicamento1}"></label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input class="form-control" id="medicamento2" type="text" placeholder="Ingresa el nombre del segundo medicamento" required/>
+                                    <label for="medicamento2" th:text="#{app.comparador.medicamento2}"></label>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <button class="btn btn-primary text-uppercase btn-rounded" id="compararButton" type="button" th:text="#{app.comparador.btn1}" onclick="compararMedicamentos()"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Aquí se mostrará el resultado de la comparación -->
+                    <div id="resultadoComparacion" class="mt-4"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>

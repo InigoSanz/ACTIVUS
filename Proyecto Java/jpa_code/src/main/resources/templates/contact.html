@@ -1,0 +1,76 @@
+<html th:lang="#{principal.lang}"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout/layout}">
+<head>
+    <meta charset="utf-8"/>
+    <title th:text="#{app.contacto.titulo}"></title>
+</head>
+<body>
+<div layout:fragment="cabecera">
+    <div class="text-center-container">
+        <h1 th:text="#{home.contacto.contacto1}"></h1>
+    </div>
+    <br>
+</div>
+<div layout:fragment="contenido">
+    <!-- Main Content-->
+    <main class="mb-4">
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <div class="card shadow-lg" style="border-radius: 25px;">
+                        <div class="card-body p-md-5">
+                            <p th:text="#{home.contacto.contacto2}"></p>
+                            <!-- Contact Form -->
+                            <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+                                <div class="form-floating mb-4">
+                                    <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
+                                    <label for="name" th:text="#{home.contacto.contacto3}"></label>
+                                    <div class="invalid-feedback" data-sb-feedback="name:required" th:text="#{home.contacto.contacto4}"></div>
+                                </div>
+                                <div class="form-floating mb-4">
+                                    <input class="form-control" id="email" type="email" placeholder="Enter your email..." data-sb-validations="required,email" />
+                                    <label for="email" th:text="#{home.contacto.contacto5}"></label>
+                                    <div class="invalid-feedback" data-sb-feedback="email:required" th:text="#{home.contacto.contacto6}"></div>
+                                    <div class="invalid-feedback" data-sb-feedback="email:email" th:text="#{home.contacto.contacto7}"></div>
+                                </div>
+                                <div class="form-floating mb-4">
+                                    <textarea class="form-control" id="message" placeholder="Enter your message here..." style="height: 12rem" data-sb-validations="required"></textarea>
+                                    <label for="message" th:text="#{home.contacto.contacto8}"></label>
+                                    <div class="invalid-feedback" data-sb-feedback="message:required" th:text="#{home.contacto.contacto9}"></div>
+                                </div>
+                                <!-- Submit success message-->
+                                <!---->
+                                <!-- This is what your users will see when the form-->
+                                <!-- has successfully submitted-->
+                                <div class="d-none" id="submitSuccessMessage">
+                                    <div class="text-center mb-3">
+                                        <div class="fw-bolder" th:text="#{home.contacto.contacto10}"></div>
+                                        To activate this form, sign up at
+                                        <br />
+                                        <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+                                    </div>
+                                </div>
+                                <!-- Submit error message-->
+                                <!---->
+                                <!-- This is what your users will see when there is-->
+                                <!-- an error submitting the form-->
+                                <div class="d-none" id="submitErrorMessage">
+                                    <div class="text-center text-danger mb-3" th:text="#{home.contacto.contacto11}"></div>
+                                </div>
+                                <!-- Submit Button-->
+                                <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                    <button class="btn btn-primary text-uppercase btn-rounded" id="submitButton" type="submit" th:text="#{home.contacto.btn1}"></button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+</body>
+</html>

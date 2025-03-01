@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html th:lang="#{principal.lang}"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title th:text="#{app.title}"></title>
+    <link type="image/x-icon" th:href="@{/assets/logoIconoSinFondo.ico}" rel="icon"/>
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link th:href="@{/css/styles.css}" rel="stylesheet"/>
+    <!-- Carga de jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
+    <!-- Lugar para los scripts personalizados -->
+    <script th:replace="~{fragments/scripts}"></script>
+    <script th:replace="~{fragments/medicamentos-script}"></script>
+    <script th:replace="~{fragments/progreso-script}"></script>
+    <style>
+        .btn-rounded {
+            border-radius: 10px; /* Ajusta este valor según tus necesidades */
+        }
+
+        .text-center-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center; /* Asegura que el texto dentro del contenedor esté centrado */
+        }
+
+        h1 {
+            color: #151414;
+            -webkit-text-fill-color: white; /* Will override color (regardless of order) */
+            -webkit-text-stroke: 2px black;
+            text-align: center; /* Centrar el texto */
+            margin: 20px; /* Margen alrededor del texto */
+            text-shadow:
+                    1px 1px 2px rgba(0, 0, 0, 0.2),
+                    2px 2px 4px rgba(0, 0, 0, 0.2),
+                    3px 3px 6px rgba(0, 0, 0, 0.2),
+                    4px 4px 8px rgba(0, 0, 0, 0.2),
+                    5px 5px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes gradient-move {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        header.masthead {
+            position: relative;
+            margin-bottom: 3rem;
+            padding-top: calc(3rem + 57px); /* Reducir la altura del padding superior */
+            padding-bottom: 3rem; /* Reducir la altura del padding inferior */
+            background: no-repeat center center;
+            background-color: #6c757d;
+            background-size: cover;
+            background-attachment: scroll;
+            box-shadow: 0 4px 8px -4px rgba(0, 0, 0, 0.5); /* Añadir sombra en la parte inferior */
+        }
+
+        header.masthead:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #212529;
+            opacity: 0.5;
+        }
+
+        header.masthead .page-heading,
+        header.masthead .post-heading,
+        header.masthead .site-heading {
+            color: #fff;
+        }
+
+        header.masthead .page-heading,
+        header.masthead .site-heading {
+            text-align: center;
+        }
+
+        header.masthead .page-heading h1,
+        header.masthead .site-heading h1 {
+            font-size: 2rem; /* Reducir tamaño de la fuente */
+        }
+
+        header.masthead .page-heading .subheading,
+        header.masthead .site-heading .subheading {
+            font-size: 1.5rem; /* Reducir tamaño de la subheading */
+            font-weight: 300;
+            line-height: 1.1;
+            display: block;
+            margin-top: 0.625rem;
+            font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        }
+
+        header.masthead .site-heading {
+            position: relative;
+            padding: 1rem; /* Espaciado interno */
+            border-radius: 10px; /* Bordes redondeados */
+        }
+
+        header.masthead .site-heading h1,
+        header.masthead .site-heading .subheading {
+            color: #fff; /* Color del texto */
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Sombra del texto */
+        }
+
+        .navbar-nav .nav-link.custom-nav-link {
+            color: #ffffff; /* Color del texto */
+            font-weight: 600; /* Aumentar el grosor del texto */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Sombra del texto */
+        }
+
+        .navbar-nav .nav-link.custom-nav-link:hover,
+        .navbar-nav .nav-link.custom-nav-link:focus {
+            color: #f8f9fa; /* Color del texto al pasar el ratón por encima */
+            background-color: rgba(255, 255, 255, 0.1); /* Fondo semitransparente al pasar el ratón por encima */
+            border-radius: 5px; /* Bordes redondeados */
+            transition: background-color 0.3s ease; /* Transición suave para el fondo */
+        }
+
+        .navbar-scrolled .navbar-nav .nav-link.custom-nav-link {
+            color: #212529; /* Cambia el color del texto cuando está en la parte superior */
+            text-shadow: none; /* Sin sombra de texto */
+        }
+
+        .dropdown-menu {
+            background-color: transparent; /* Fondo transparente */
+            border: none; /* Sin borde */
+            box-shadow: none; /* Sin sombra */
+        }
+
+        .dropdown-menu .dropdown-item {
+            color: #ffffff; /* Color del texto */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Sombra del texto */
+        }
+
+        .dropdown-menu .dropdown-item:hover,
+        .dropdown-menu .dropdown-item:focus {
+            background-color: rgba(255, 255, 255, 0.1); /* Fondo semitransparente al pasar el ratón por encima */
+            border-radius: 5px; /* Bordes redondeados */
+            transition: background-color 0.3s ease; /* Transición suave para el fondo */
+        }
+
+        @media (max-width: 991px) {
+            .navbar-nav .nav-link.custom-nav-link {
+                color: #212529; /* Color del texto cuando la ventana es pequeña */
+                text-shadow: none; /* Sin sombra de texto cuando la ventana es pequeña */
+            }
+
+            .navbar-nav .nav-link.custom-nav-link:hover,
+            .navbar-nav .nav-link.custom-nav-link:focus {
+                color: #007bff; /* Color azul cuando el ratón está encima en ventanas pequeñas */
+                background-color: rgba(255, 255, 255, 0.1); /* Fondo semitransparente al pasar el ratón por encima */
+                border-radius: 5px; /* Bordes redondeados */
+            }
+
+            .dropdown-menu .dropdown-item {
+                color: #212529; /* Color del texto cuando la ventana es pequeña */
+                text-shadow: none; /* Sin sombra de texto cuando la ventana es pequeña */
+            }
+        }
+
+        @media (min-width: 992px) {
+            header.masthead {
+                padding-top: 6.5rem; /* Ajustar padding superior en pantallas grandes */
+                padding-bottom: 6.5rem; /* Ajustar padding inferior en pantallas grandes */
+            }
+            header.masthead .page-heading h1,
+            header.masthead .site-heading h1 {
+                font-size: 2rem; /* Ajustar tamaño de la fuente en pantallas grandes */
+            }
+        }
+
+        .welcome-message {
+            color: #ffffff; /* Color del texto */
+            font-weight: 600; /* Aumentar el grosor del texto */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Sombra del texto */
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem; /* Hacer la fuente más pequeña */
+            border: 1px solid #ffffff; /* Añadir borde */
+            padding: 5px 10px; /* Añadir relleno */
+            border-radius: 5px; /* Bordes redondeados */
+            animation: highlight 1.5s infinite; /* Añadir animación */
+        }
+
+        .welcome-message i {
+            margin-right: 0.8rem; /* Separar el icono del texto */
+        }
+
+        .navbar-scrolled .welcome-message {
+            color: #212529; /* Cambia el color del texto cuando está en la parte superior */
+            text-shadow: none; /* Sin sombra de texto */
+            border-color: #212529; /* Cambia el color del borde cuando está en la parte superior */
+            animation: none; /* Elimina la animación */
+        }
+
+        @media (max-width: 991px) {
+            .welcome-message {
+                color: #212529; /* Color del texto cuando la ventana es pequeña */
+                text-shadow: none; /* Sin sombra de texto cuando la ventana es pequeña */
+                border-color: #212529; /* Cambia el color del borde cuando la ventana es pequeña */
+                display: inline-block; /* Ajusta el recuadro al texto */
+                width: auto; /* Ancho ajustado al contenido */
+            }
+        }
+
+        @keyframes highlight {
+            0% {
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+            50% {
+                background-color: rgba(255, 255, 255, 0.3);
+            }
+            100% {
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+        }
+
+        .language-selector {
+            display: flex;
+            align-items: center;
+            color: #ffffff;
+            font-size: 0.8rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+            margin-left: 1rem; /* Separar del logo */
+        }
+
+        .language-selector span {
+            font-size: 1rem; /* Hacer el texto "Languages" más grande */
+            margin-top: 20px;
+        }
+
+        .navbar-scrolled .language-selector span {
+            color: #212529; /* Cambia el color del texto cuando está en la parte superior */
+            text-shadow: none; /* Sin sombra de texto */
+        }
+
+        .language-selector select {
+            margin-left: 0.5rem;
+            margin-top: 20px;
+            color: #000000;
+        }
+
+        @media (max-width: 991px) {
+            .language-selector span {
+                color: #212529; /* Cambia el color del texto cuando la ventana es pequeña */
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Navigation-->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container px-4 px-lg-5">
+        <a class="navbar-brand" th:href="@{/}">
+            <img th:src="@{/assets/img/LogoBienSinFondo.png}" alt="Logo" style="height: 55px;"/>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            Menu
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                <li class="nav-item"><a class="nav-link custom-nav-link px-lg-3 py-3 py-lg-4" th:href="@{/}" th:text="#{app.menu.inicio}"></a></li>
+                <li class="nav-item"><a class="nav-link custom-nav-link px-lg-3 py-3 py-lg-4" th:href="@{/proyect}" th:text="#{app.menu.proyecto}"></a></li>
+                <li class="nav-item"><a class="nav-link custom-nav-link px-lg-3 py-3 py-lg-4" th:href="@{/contact}" th:text="#{app.menu.contacto}"></a></li>
+                <li class="nav-item"><a class="nav-link custom-nav-link px-lg-3 py-3 py-lg-4" th:href="@{/termsandconditions}" th:text="#{app.menu.legal}"></a></li>
+                <li sec:authorize="hasRole('USER')" class="nav-item dropdown">
+                    <a class="nav-link custom-nav-link dropdown-toggle px-lg-3 py-3 py-lg-4" href="#" id="aplicacionDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" th:text="#{app.menu.aplicacion}"></a>
+                    <ul class="dropdown-menu" aria-labelledby="aplicacionDropdown">
+                        <li><a class="dropdown-item" th:href="@{/aplicacion/medicamentos}" th:text="#{app.menu.aplicacion.medicamentos}"></a></li>
+                        <li><a class="dropdown-item" th:href="@{/aplicacion/comparador}" th:text="#{app.menu.aplicacion.comparador}"></a></li>
+                        <li><a class="dropdown-item" th:href="@{/aplicacion/pacientes}" th:text="#{app.menu.aplicacion.pacientes}"></a></li>
+                    </ul>
+                </li>
+                <li sec:authorize="hasRole('ADMIN')" class="nav-item dropdown">
+                    <a class="nav-link custom-nav-link dropdown-toggle px-lg-3 py-3 py-lg-4" href="#" id="gestionDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" th:text="#{app.menu.gestion}"></a>
+                    <ul class="dropdown-menu" aria-labelledby="gestionDropdown">
+                        <li><a class="dropdown-item" th:href="@{/users}" th:text="#{app.menu.gestion.usuarios}"></a></li>
+                        <li><a class="dropdown-item" th:href="@{/gestion/configuracion}" th:text="#{app.menu.gestion.configuracion}"></a></li>
+                        <!-- Agregar más enlaces de gestión según sea necesario -->
+                    </ul>
+                </li>
+                <li sec:authorize="isAnonymous()" class="nav-item"><a class="nav-link custom-nav-link px-lg-3 py-3 py-lg-4" th:href="@{/users/login}" th:text="#{app.menu.login}"></a></li>
+                <li sec:authorize="isAnonymous()" class="nav-item"><a class="nav-link custom-nav-link px-lg-3 py-3 py-lg-4" th:href="@{/users/registro}" th:text="#{app.menu.register}"></a></li>
+                <li sec:authorize="isAuthenticated()" class="nav-item"><a class="nav-link custom-nav-link px-lg-3 py-3 py-lg-4" th:href="@{/logout}" th:text="#{app.menu.logout}"></a></li>
+                <li sec:authorize="isAuthenticated()" class="nav-item welcome-message">
+                    <i class="fas fa-user"></i>
+                    <span sec:authentication="name"></span>
+                </li>
+                <li class="nav-item">
+                    <div class="language-selector">
+                        <span th:text="#{lang.change}">Languages</span>
+                        <select id="locales">
+                            <option value=""></option>
+                            <option value="es" th:text="#{lang.es}"></option>
+                            <option value="en" th:text="#{lang.eng}"></option>
+                        </select>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<header class="masthead" style="background-image: url('/assets/img/home-bg.jpg')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="site-heading">
+                    <h1 th:text="#{app.cabecera.titulo}"></h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Main Content-->
+<div class="container-xxl py-5">
+    <!-- Aqui vamos a escribir las cabeceras de los bloques  -->
+    <section class="container" layout:fragment="cabecera"></section>
+    <!-- Aqui vamos a escribir el contenido de los bloques  -->
+    <section class="container" layout:fragment="contenido"></section>
+</div>
+<!-- Footer-->
+<footer class="border-top">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <ul class="list-inline text-center">
+                    <li class="list-inline-item">
+                        <a href="#!">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#!">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#!">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+                <div class="small text-center text-muted fst-italic">Copyright &copy; Activus 2024</div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script th:src="@{/js/scripts.js}"></script>
+<script th:src="@{/js/custom-scripts.js}"></script>
+</body>
+</html>

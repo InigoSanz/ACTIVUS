@@ -1,0 +1,90 @@
+<html th:lang="#{principal.lang}"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout/layout}"
+      xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8"/>
+    <title th:text="#{app.register.titulo}"></title>
+    <style>
+        .btn-centered {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 20px; /* Ajusta el padding según tus necesidades */
+            width: 100%; /* Asegura que los botones se expandan a todo el ancho */
+        }
+    </style>
+</head>
+<body>
+<div layout:fragment="cabecera">
+    <div class="text-center-container">
+        <h1 th:text="#{home.register.registro1}"></h1>
+    </div>
+    <br>
+</div>
+<div layout:fragment="contenido">
+    <!-- Main Content-->
+    <main class="mb-4">
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <div th:if="${success}" class="alert alert-success" role="alert">
+                        <p th:text="#{home.register.registro2}"></p>
+                    </div>
+                    <div class="card shadow-lg" style="border-radius: 25px;">
+                        <div class="card-body p-md-5">
+                            <p th:text="#{home.register.registro3}"></p>
+                            <div class="my-5">
+                                <!-- Formulario de registro -->
+                                <form id="registerForm" th:action="@{/users/registro}" method="post" th:object="${datosUsuario}">
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" th:field="*{nombreUsuario}" id="username" type="text" placeholder="Ingresa tu nombre de usuario..." data-sb-validations="required"/>
+                                        <label for="username" th:text="#{home.register.registro4}"></label>
+                                        <div class="invalid-feedback" data-sb-feedback="username:required" th:text="#{home.register.registro5}"></div>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" th:field="*{email}" id="nameEmail" type="email" placeholder="Ingresa tu Email..." data-sb-validations="required"/>
+                                        <label for="nameEmail" th:text="#{home.register.registro6}"></label>
+                                        <div class="invalid-feedback" data-sb-feedback="email:required" th:text="#{home.register.registro7}"></div>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" th:field="*{password}" id="password" type="password" placeholder="Ingresa tu contraseña..." data-sb-validations="required"/>
+                                        <label for="password" th:text="#{home.register.registro8}"></label>
+                                        <div class="invalid-feedback" data-sb-feedback="password:required" th:text="#{home.register.registro9}"></div>
+                                    </div>
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <div class="form-outline flex-fill mb-0">
+                                            <label class="form-label" for="inputRoles" th:text="#{home.register.roles1}"></label>
+                                            <div th:each="role_item : ${listaRoles}" id="inputRoles" th:switch="#{principal.lang}">
+                                                <div class="custom-control custom-radio custom-control-inline" th:case="'en'">
+                                                    <input type="radio" th:field="*{roles}" th:value="${role_item.id}" class="custom-control-input">
+                                                    <label class="custom-control-label" th:for="${#ids.prev('roles')}" th:text="${role_item.rolName_en}">Rol</label>
+                                                    <br/>
+                                                </div>
+                                                <div class="custom-control custom-radio custom-control-inline" th:case="'es'">
+                                                    <input type="radio" th:field="*{roles}" th:value="${role_item.id}" class="custom-control-input">
+                                                    <label class="custom-control-label" th:for="${#ids.prev('roles')}" th:text="${role_item.rolName_es}">Rol</label>
+                                                </div>
+                                                <div class="custom-control custom-radio custom-control-inline" th:case="*">
+                                                    <input type="radio" th:field="*{roles}" th:value="${role_item.id}" class="custom-control-input">
+                                                    <label class="custom-control-label" th:for="${#ids.prev('roles')}" th:text="${role_item.rolName_es}">Rol</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-column flex-md-row justify-content-between">
+                                        <button class="btn btn-primary text-uppercase btn-rounded me-2 mb-2 mb-md-0 btn-centered" id="registerButton" type="submit" th:text="#{home.register.btn1}"></button>
+                                        <a class="btn btn-secondary text-uppercase btn-rounded mb-2 mb-md-0 btn-centered" th:href="@{/users/login}" th:text="#{home.register.btn2}"></a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>

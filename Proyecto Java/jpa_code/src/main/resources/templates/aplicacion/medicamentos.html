@@ -1,0 +1,53 @@
+<html th:lang="#{principal.lang}"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout/layout}">
+<head>
+    <meta charset="utf-8"/>
+    <title th:text="#{app.title}"></title>
+    <!-- Carga de jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
+    <style>
+        .result-container {
+            font-size: 0.9rem; /* Ajustar el tamaño del texto */
+            margin-bottom: 1rem; /* Añadir espacio entre resultados */
+            border-bottom: 1px solid #ddd; /* Línea de separación */
+            padding-bottom: 1rem; /* Añadir espacio interno */
+        }
+    </style>
+</head>
+<body>
+<div layout:fragment="cabecera">
+    <div class="text-center-container">
+        <h1 th:text="#{app.medicamentos.titulo}"></h1>
+    </div>
+    <br>
+</div>
+<div layout:fragment="contenido">
+    <main class="mb-4">
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <!-- Card con el formulario para buscar medicamentos -->
+                    <div class="card shadow-lg" style="border-radius: 25px;">
+                        <div class="card-body p-md-5">
+                            <div class="my-5">
+                                <div class="form-floating mb-3">
+                                    <input class="form-control" id="medicamento" type="text" placeholder="Ingresa el nombre del medicamento" required/>
+                                    <label for="medicamento" th:text="#{app.medicamentos.nombre}"></label>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <button class="btn btn-primary text-uppercase btn-rounded" id="buscarButton" type="button" th:text="#{app.medicamentos.btn1}" onclick="buscarMedicamento()"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Aquí se mostrará el resultado de la búsqueda -->
+                    <div id="resultadoBusqueda" class="mt-4"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>

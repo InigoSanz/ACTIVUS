@@ -1,0 +1,36 @@
+<html th:lang="#{principal.lang}"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout/layout}"
+      xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8"/>
+    <title th:text="#{home.datos.datos}"></title>
+</head>
+<body>
+<div layout:fragment="cabecera">
+    <div class="text-center-container">
+        <h1 th:text="#{home.datos.datos1}"></h1>
+    </div>
+    <br>
+</div>
+<div layout:fragment="contenido">
+    <!-- Main Content-->
+    <main class="mb-4">
+        <div class="container px-4 px-lg-5">
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6">
+                    <div class="card text-center shadow-lg">
+                        <div class="card-body">
+                            <h2 class="card-title" th:text="#{users.noencontrado}"></h2>
+                            <p class="card-text" th:text="#{users.noencontrado.descripcion}"></p>
+                            <a th:href="@{/}" class="btn btn-primary btn-rounded" th:text="#{home.volver.inicio}"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>

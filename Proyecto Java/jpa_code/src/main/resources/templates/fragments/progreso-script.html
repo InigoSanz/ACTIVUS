@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title></title>
+</head>
+<body>
+<script>
+    // Espera a que el DOM esté completamente cargado
+    document.addEventListener("DOMContentLoaded", function() {
+        const progressBar = document.getElementById("progress-bar"); // Elemento de la barra de progreso
+        const progressBarText = document.getElementById("progress-bar-text"); // Elemento de texto de la barra de progreso
+        let width = 0;
+        // Incrementa el ancho de la barra de progreso hasta el 70%
+        const interval = setInterval(function() {
+            if (width >= 70) {
+                clearInterval(interval);
+            } else {
+                width++;
+                progressBar.style.width = width + '%';
+                progressBarText.textContent = width + '%';
+            }
+        }, 50); // Incrementa cada 50 ms para una animación suave
+    });
+</script>
+</body>
+</html>

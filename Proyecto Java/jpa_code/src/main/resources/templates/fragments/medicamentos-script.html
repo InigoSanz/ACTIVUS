@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title></title>
+</head>
+<body>
+<script>
+    /**
+     * Función para buscar información sobre un medicamento.
+     * Toma el valor del input con id 'medicamento' y realiza una solicitud a una API.
+     */
+    function buscarMedicamento() {
+        // Obtiene el valor del campo de texto con id 'medicamento'
+        const medicamento = document.getElementById('medicamento').value;
+
+        // Verifica si el campo no está vacío
+        if (medicamento) {
+            console.log("Buscando medicamento:", medicamento);
+
+            // Realiza una solicitud fetch a la API para buscar el medicamento
+            fetch('http://127.0.0.1:5000/consulta_medicamento?medicamento=' + encodeURIComponent(medicamento), {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => {
+                    // Verifica si la respuesta es correcta
+                    if (!response.ok) {
+                        throw new Error('Error en la solicitud');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Maneja los datos recibidos de la API
+                    console.log("Datos recibidos:", data);
+                    let resultadoHTML = '<h3>Resultados de la Búsqueda:</h3>';
+                    if (data.length > 0) {
+                        // Itera sobre los resultados y genera HTML para cada medicamento
+                        data.forEach(medicamento => {
+                            resultadoHTML += `<div class="result-container">`;
+                            resultadoHTML += `<p><strong>ID:</strong> ${medicamento.idCodigo}</p>`;
+                            resultadoHTML += `<p><strong>Nombre:</strong> ${medicamento.nombreProducto}</p>`;
+                            resultadoHTML += `<p><strong>Tipo:</strong> ${medicamento.tipoFarmaco}</p>`;
+                            resultadoHTML += `<p><strong>Código de Laboratorio:</strong> ${medicamento.codigoLaboratorio}</p>`;
+                            resultadoHTML += `<p><strong>Estado:</strong> ${medicamento.estado}</p>`;
+                            resultadoHTML += `<p><strong>Principio Activo:</strong> ${medicamento.principioActivo}</p>`;
+                            resultadoHTML += `<p><strong>PVP:</strong> ${medicamento.precioVentaPublico}</p>`;
+                            resultadoHTML += `</div>`;
+                        });
+                    } else {
+                        // Mensaje si no se encontraron resultados
+                        resultadoHTML += '<p>No se encontraron resultados.</p>';
+                    }
+                    // Inserta el HTML generado en el elemento con id 'resultadoBusqueda'
+                    document.getElementById('resultadoBusqueda').innerHTML = resultadoHTML;
+                })
+                .catch(error => {
+                    // Maneja errores en la solicitud
+                    console.error('Error:', error);
+                    document.getElementById('resultadoBusqueda').innerHTML = '<p style="color: red;">Ocurrió un error al realizar la búsqueda. Por favor, intente nuevamente.</p>';
+                });
+        } else {
+            // Alerta si el campo de medicamento está vacío
+            alert('Por favor, ingrese el nombre de un medicamento.');
+        }
+    }
+</script>
+</body>
+</html>

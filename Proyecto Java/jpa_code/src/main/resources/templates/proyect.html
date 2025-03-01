@@ -1,0 +1,53 @@
+<html th:lang="#{principal.lang}"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout/layout}">
+<head>
+    <meta charset="utf-8"/>
+    <title th:text="#{app.proyecto.titulo}"></title>
+</head>
+<body>
+<div layout:fragment="cabecera">
+    <div class="text-center-container">
+        <h1 th:text="#{home.proyecto.proyecto1}"></h1>
+    </div>
+    <br>
+</div>
+<div layout:fragment="contenido">
+    <!-- Main Content-->
+    <main class="mb-4">
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <div class="card shadow-lg" style="border-radius: 25px;">
+                        <div class="card-body p-md-5">
+                            <h4 th:text="#{home.proyecto.proyecto2}"></h4>
+                            <p>ACTIVUS</p>
+
+                            <h4 th:text="#{home.proyecto.proyecto3}"></h4>
+                            <p th:text="#{home.proyecto.proyecto4}"></p>
+
+                            <h4 th:text="#{home.proyecto.proyecto5}"></h4>
+                            <ul>
+                                <li th:text="#{home.proyecto.proyecto6}"></li>
+                                <li th:text="#{home.proyecto.proyecto7}"></li>
+                                <li th:text="#{home.proyecto.proyecto8}"></li>
+                                <li th:text="#{home.proyecto.proyecto9}"></li>
+                                <li th:text="#{home.proyecto.proyecto10}"></li>
+                                <li th:text="#{home.proyecto.proyecto11}"></li>
+                            </ul>
+
+                            <h4 th:text="#{home.proyecto.proyecto12}"></h4>
+                            <p th:text="#{home.proyecto.proyecto13}"></p>
+
+                            <h4 th:text="#{home.proyecto.proyecto14}"></h4>
+                            <p th:text="#{home.proyecto.proyecto15}"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html th:lang="#{principal.lang}"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="utf-8"/>
+    <title th:text="#{error.title3.titulo}"></title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f8f9fa;
+            font-family: 'Open Sans', sans-serif;
+        }
+        .error-container {
+            text-align: center;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            background-color: #ffffff;
+        }
+        h1 {
+            color: #343a40;
+            margin-bottom: 20px;
+        }
+        p {
+            margin-top: 10px;
+            margin-bottom: 20px;
+            color: #6c757d;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div class="error-container">
+    <h1 th:text="#{error.mensaje.titulo}"></h1>
+    <p th:text="#{error.mensaje5.mensaje}"></p>
+    <p><a th:href="@{/}" th:text="#{error.volver.home}"></a></p>
+</div>
+</body>
+</html>

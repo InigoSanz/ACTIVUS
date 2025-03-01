@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html th:lang="#{principal.lang}"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout/layout}"
+      xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8"/>
+    <title th:text="#{app.register.titulo}"></title>
+</head>
+<body>
+<div layout:fragment="cabecera">
+    <div class="text-center-container">
+        <h1 th:text="#{usuarios.register.modificar}"></h1>
+    </div>
+    <br>
+</div>
+<div layout:fragment="contenido">
+    <!-- Main Content-->
+    <main class="mb-4">
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <div class="card shadow-lg">
+                        <div class="card-body">
+                            <!-- Formulario de registro -->
+                            <form id="registerForm" th:action="@{/users/{idusr}(idusr=${datosUsuario.id})}" method="post" th:object="${datosUsuario}"> <!--Se arregló la modificación de datos del usuario añadiendo el id en los atribuitos que se le pasan al controlador-->
+                                <input type="hidden" th:field="*{id}" />
+                                <div class="form-floating mb-3">
+                                    <input class="form-control" th:field="*{nombreUsuario}" id="username" type="text" placeholder="Ingresa tu nombre de usuario..." data-sb-validations="required"/>
+                                    <label for="username" th:text="#{home.register.registro4}"></label>
+                                    <div class="invalid-feedback" data-sb-feedback="username:required" th:text="#{home.register.registro5}"></div>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input class="form-control" th:field="*{email}" id="nameEmail" type="email" placeholder="Ingresa tu Email..." data-sb-validations="required"/>
+                                    <label for="nameEmail" th:text="#{home.register.registro6}"></label>
+                                    <div class="invalid-feedback" data-sb-feedback="email:required" th:text="#{home.register.registro7}"></div>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <button class="btn btn-primary text-uppercase btn-rounded" id="registerButton" type="submit" th:text="#{usuarios.guardar}"></button>
+                                    <a class="btn btn-secondary text-uppercase btn-rounded" th:href="@{/users}" th:text="#{usuarios.cancelar}"></a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>
