@@ -4,12 +4,20 @@ ACTIVUS es una aplicación web diseñada para analizar la compatibilidad entre m
 
 🏥 ¿Qué hace ACTIVUS?
 
+✔️ 7️⃣ Recuperación de contraseña con envío de correo electrónico (con seguridad).
+
 ✔️ 1️⃣ Consulta y búsqueda de medicamentos en una base de datos local.
+
 ✔️ 2️⃣ Comparación de medicamentos para detectar interacciones.
+
 ✔️ 3️⃣ Sistema de usuarios con roles (médicos y administradores).
+
 ✔️ 4️⃣ Interfaz moderna y adaptable con HTML, CSS y Thymeleaf.
+
 ✔️ 5️⃣ Seguridad con autenticación de usuarios y control de acceso.
+
 ✔️ 6️⃣ Multilenguaje con soporte para español e inglés.
+
 ✔️ 7️⃣ Recuperación de contraseña con envío de correo electrónico (con seguridad).
 
 🛠️ Tecnologías Utilizadas
@@ -115,26 +123,34 @@ Body (JSON):
 🔍 Uso de ACTIVUS
 
 1️⃣ Accede a la aplicación: Abre un navegador y ve a http://localhost:8080.
+
 2️⃣ Inicia sesión: Crea una cuenta o usa credenciales preconfiguradas:
 
 Usuario: admin
 Contraseña: admin123
 
 3️⃣ Busca medicamentos: Introduce el nombre de un fármaco y revisa su información.
+
 4️⃣ Compara medicamentos: Selecciona dos y revisa sus interacciones potenciales.
+
 5️⃣ Gestión de usuarios: Si eres administrador, puedes gestionar cuentas de usuarios.
+
 6️⃣ Recupera información de medicamentos: Consulta detalles de cualquier fármaco en la base de datos.
 
 📌 Mejoras Futuras
 
 ✔️ 1️⃣ Expansión de la base de datos con nuevas fuentes oficiales.
+
 ✔️ 2️⃣ Implementación de notificaciones y alertas personalizadas.
+
 ✔️ 3️⃣ Optimización del algoritmo de comparación de medicamentos para admitir múltiples principios activos.
+
 ✔️ 4️⃣ Creación de un foro para discutir interacciones y experiencias clínicas.
+
 ✔️ 5️⃣ Implementación de algoritmos más eficientes para la detección de interacciones.
 
 📖 Licencia
 
 ACTIVUS está bajo la Licencia MIT.
 
-🎯 ¡Ahora estás listo para usar ACTIVUS! Si tienes dudas o mejoras, contribuye al proyecto o abre un issue en GitHub. 🚀
+🎯 ¡Ahora estás listo para usar ACTIVUS! Si tienes dudas o mejoras abre un issue en GitHub. 🚀
