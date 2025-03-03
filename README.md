@@ -99,17 +99,9 @@ python compatibilidadPA.py
 
 4️⃣ Verificar los endpoints con Postman:
 
-Para consultar medicamentos:
+Ejemplo:
 
-Método: GET
-
-URL: http://localhost:5000/medicamentos
-
-Para comparar medicamentos:
-
-Método: POST
-
-URL: http://localhost:5000/comparar
+URL: http://localhost:5000/pa_medicamentos
 
 Body (JSON):
 
