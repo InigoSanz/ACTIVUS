@@ -116,8 +116,8 @@ Body (JSON):
 
 2️⃣ Inicia sesión: Crea una cuenta o usa credenciales preconfiguradas:
 
-Usuario: admin
-Contraseña: admin123
+Usuario: administrator
+Contraseña: Admin1234.
 
 3️⃣ Busca medicamentos: Introduce el nombre de un fármaco y revisa su información.
 
