@@ -101,7 +101,7 @@ public class JpaCodeApplication {
 		Roles rolesUser = rolesRepository.findByRolName("ROLE_USER");
 
 		Users adminUser = new Users();
-		adminUser.setEmail("i.sanzdelg@gmail.com"); // Sería admin@appactivus.com
+		adminUser.setEmail("adminAdmin@gmail.com"); // Poner un correo electrónico
 		adminUser.setNombreUsuario("administrator");
 		adminUser.setPassword(userService.getEncodedPasswordstr("Admin1234."));
 		adminUser.setRol(rolesAdmin);
