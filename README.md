@@ -143,6 +143,6 @@ Contraseña: Admin1234.
 
 ACTIVUS está bajo la Licencia MIT.
 
-🎯 Puede probar el proyecto, si tienes dudas o mejoras abre un issue en GitHub.
+🎯 Puedes probar el proyecto, si tienes dudas o mejoras abre un issue en GitHub.
 
 ⚠️ Disclaimer: Este README puede contener errores para el despliegue de la aplicación. Se recomienda consultar la documentación en la memoria y los anexos para más detalles.
