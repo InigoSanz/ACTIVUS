@@ -1,148 +1,189 @@
-🚀 ACTIVUS - Compatibilidad de Medicamentos
+# 🚀 ACTIVUS - Compatibilidad de Medicamentos
 
-ACTIVUS es una aplicación web diseñada para analizar la compatibilidad entre medicamentos según sus principios activos. Esta herramienta facilita a médicos y farmacéuticos la evaluación de interacciones entre fármacos, optimizando la seguridad en tratamientos combinados.
+ACTIVUS es una aplicación web diseñada para analizar la compatibilidad entre medicamentos según sus principios activos. Está planteada como **proyecto académico / demo técnica**, orientado a mostrar arquitectura, backend, frontend e integración con una API de apoyo para comparación.
 
-🏥 ¿Qué hace ACTIVUS?
+## 🏥 ¿Qué hace ACTIVUS?
 
-✔️ 1️⃣ Consulta y búsqueda de medicamentos en una base de datos local.
+- Consulta y búsqueda de medicamentos en una base de datos local.
+- Comparación de medicamentos para detectar interacciones.
+- Sistema de usuarios con roles (médicos y administradores).
+- Interfaz web con Thymeleaf, HTML, CSS y Bootstrap.
+- Autenticación y control de acceso.
+- Soporte multilenguaje en español e inglés.
+- Recuperación de contraseña mediante correo electrónico.
 
-✔️ 2️⃣ Comparación de medicamentos para detectar interacciones.
+## 🛠️ Tecnologías utilizadas
 
-✔️ 3️⃣ Sistema de usuarios con roles (médicos y administradores).
+### Backend
+- Java 17
+- Spring Boot
+- Spring MVC
+- Spring Data JPA
+- Spring Security
+- MySQL
 
-✔️ 4️⃣ Interfaz moderna y adaptable con HTML, CSS y Thymeleaf.
+### Frontend
+- Thymeleaf
+- HTML
+- CSS
+- Bootstrap
+- JavaScript
 
-✔️ 5️⃣ Seguridad con autenticación de usuarios y control de acceso.
+### API de comparación
+- Flask
+- SQLAlchemy
+- Pandas
+- PyMySQL
+- Flask-CORS
 
-✔️ 6️⃣ Multilenguaje con soporte para español e inglés.
+## 🔧 Instalación y configuración
 
-✔️ 7️⃣ Recuperación de contraseña con envío de correo electrónico (con seguridad).
+### 1. Clonar el repositorio
 
-🛠️ Tecnologías Utilizadas
+```bash
+git clone https://github.com/InigoSanz/ACTIVUS
+cd ACTIVUS
+```
 
-🔹 1️⃣ Backend (Lógica del Servidor)
+### 2. Configuración del backend (Spring Boot + MySQL)
 
-Java 17 con Spring Boot (MVC, Data JPA, Security).
+#### 2.1 Crear la base de datos
 
-MySQL (WAMP/XAMPP) como base de datos relacional.
+Ejecuta en MySQL:
 
-Spring Security para autenticación y roles de usuario.
-
-🔹 2️⃣ Frontend (Interfaz de Usuario)
-
-Thymeleaf para renderizar plantillas dinámicas.
-
-HTML, CSS y Bootstrap para una experiencia responsiva.
-
-JavaScript para interacciones dinámicas.
-
-🔹 3️⃣ API de Comparación (Python)
-
-Flask para la gestión de solicitudes REST.
-
-SQLAlchemy y Pandas para análisis de datos.
-
-PyMySQL para conexión con la base de datos.
-
-Flask-CORS para comunicación segura entre frontend y API.
-
-🔧 Instalación y Configuración
-
-🔹 1️⃣ Clonar el Repositorio
-
- git clone https://github.com/InigoSanz/ACTIVUS
- cd ACTIVUS
-
-🔹 2️⃣ Configuración del Backend (Spring Boot + MySQL)
-
-1️⃣ Crear la base de datos en MySQL (ejecutar en MySQL Workbench o consola):
-
+```sql
 CREATE DATABASE bbdd_proyecto;
+```
 
-2️⃣ Configurar credenciales en application.properties (ubicado en backend/src/main/resources/):
+#### 2.2 Crear configuración local no versionada
 
-spring.datasource.url=jdbc:mysql://localhost:3306/bbdd_proyecto
-spring.datasource.username=root
-spring.datasource.password=proyectoFinal
-spring.jpa.hibernate.ddl-auto=update
-server.port=8082  # Modificar si quieres usar otro puerto
+Usa como referencia el archivo:
 
-3️⃣ Ejecutar el backend desde la terminal o el IDE:
+```text
+Proyecto Java/jpa_code/src/main/resources/application-example.properties
+```
 
-cd backend
-mvn spring-boot:run
+Y crea tu configuración local en:
 
-Esto iniciará el servidor en http://localhost:8080 (o en http://localhost:8082 si configuraste otro puerto).
-
-🔹 3️⃣ Configuración de la API en Python
-
-1️⃣ Instalar dependencias necesarias (desde la carpeta api/):
-
-cd api
-pip install -r requirements.txt
-
-2️⃣ Ejecutar la API Flask:
-
-flask run
-
-La API estará disponible en http://localhost:5000
-
-3️⃣ Orden de Ejecución para la API:
-
-1️⃣ Cargar datos en la base de datos:
-
-python cargarDatos.py
-
-2️⃣ Ejecutar la lógica de compatibilidad:
-
-python compatibilidadPA.py
-
-4️⃣ Verificar los endpoints con Postman:
+```text
+Proyecto Java/jpa_code/src/main/resources/application-local.properties
+```
 
 Ejemplo:
 
-URL: http://localhost:5000/pa_medicamentos
+```properties
+spring.datasource.url=jdbc:mysql://localhost:3306/bbdd_proyecto
+spring.datasource.username=root
+spring.datasource.password=TU_PASSWORD
 
-Body (JSON):
+server.port=8082
 
+spring.jpa.show-sql=true
+spring.jpa.hibernate.ddl-auto=update
+```
+
+#### 2.3 Ejecutar el backend
+
+Desde la carpeta del backend:
+
+```bash
+cd "Proyecto Java/jpa_code"
+mvn spring-boot:run
+```
+
+La aplicación se iniciará en:
+
+```text
+http://localhost:8082
+```
+
+> Si usas IntelliJ, puedes ejecutar la aplicación activando el perfil `local`.
+
+### 3. Configuración de la API en Python
+
+Comprueba la carpeta exacta de la API en tu entorno local y ejecuta allí los comandos correspondientes.
+
+Instalación de dependencias:
+
+```bash
+pip install -r requirements.txt
+```
+
+Ejecución de la API Flask:
+
+```bash
+flask run
+```
+
+La API estará disponible en:
+
+```text
+http://localhost:5000
+```
+
+### 4. Orden recomendado de ejecución para la API
+
+1. Cargar datos en la base de datos:
+
+```bash
+python cargarDatos.py
+```
+
+2. Ejecutar la lógica de compatibilidad:
+
+```bash
+python compatibilidadPA.py
+```
+
+### 5. Verificación de endpoints con Postman
+
+**URL**
+
+```text
+http://localhost:5000/pa_medicamentos
+```
+
+**Body**
+
+```json
 {
   "medicamento1": "Ibuprofeno",
   "medicamento2": "Paracetamol"
 }
+```
 
-🔍 Uso de ACTIVUS
+## 🔍 Uso de ACTIVUS
 
-1️⃣ Accede a la aplicación: Abre un navegador y ve a http://localhost:8080.
+1. Accede a la aplicación en `http://localhost:8082`.
+2. Inicia sesión con usuarios de prueba configurados en tu entorno local.
+3. Busca medicamentos y revisa su información.
+4. Compara medicamentos y revisa interacciones potenciales.
+5. Gestiona usuarios si tu cuenta tiene permisos de administración.
+6. Consulta información de medicamentos almacenados en la base de datos.
 
-2️⃣ Inicia sesión: Crea una cuenta o usa credenciales preconfiguradas:
+> Este repositorio no publica credenciales por defecto.
 
-Usuario: administrator
-Contraseña: Admin1234.
+## 📌 Mejoras futuras
 
-3️⃣ Busca medicamentos: Introduce el nombre de un fármaco y revisa su información.
+- Expansión de la base de datos con nuevas fuentes oficiales.
+- Implementación de notificaciones y alertas personalizadas.
+- Optimización del algoritmo de comparación de medicamentos para múltiples principios activos.
+- Creación de un foro de discusión.
+- Mejora del rendimiento de los algoritmos de detección de interacciones.
 
-4️⃣ Compara medicamentos: Selecciona dos y revisa sus interacciones potenciales.
+## ⚠️ Aviso importante
 
-5️⃣ Gestión de usuarios: Si eres administrador, puedes gestionar cuentas de usuarios.
+**ACTIVUS es un proyecto académico / demo técnica.**  
+No debe utilizarse como herramienta clínica ni para tomar decisiones sanitarias reales.
 
-6️⃣ Recupera información de medicamentos: Consulta detalles de cualquier fármaco en la base de datos.
+## 📖 Licencia
 
-📌 Mejoras Futuras
+ACTIVUS está bajo la licencia MIT.
 
-✔️ 1️⃣ Expansión de la base de datos con nuevas fuentes oficiales.
+## 🎯 Contribuciones
 
-✔️ 2️⃣ Implementación de notificaciones y alertas personalizadas.
+Si tienes dudas o propuestas de mejora, puedes abrir un issue en GitHub.
 
-✔️ 3️⃣ Optimización del algoritmo de comparación de medicamentos para admitir múltiples principios activos.
+## ⚠️ Nota final
 
-✔️ 4️⃣ Creación de un foro para discutir interacciones y experiencias clínicas.
-
-✔️ 5️⃣ Implementación de algoritmos más eficientes para la detección de interacciones.
-
-📖 Licencia
-
-ACTIVUS está bajo la Licencia MIT.
-
-🎯 Puedes probar el proyecto, si tienes dudas o mejoras abre un issue en GitHub.
-
-⚠️ Disclaimer: Este README puede contener errores para el despliegue de la aplicación. Se recomienda consultar la documentación en la memoria y los anexos para más detalles.
+Este README puede requerir ajustes según la estructura local exacta del proyecto y del entorno de ejecución.
