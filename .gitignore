@@ -48,3 +48,14 @@ build/
 
 # Ignorar archivos generados por MySQL Workbench
 *.mwb
+
+# Spring local overrides
+**/src/main/resources/application-local.properties
+**/src/main/resources/application-secret.properties
+**/src/main/resources/application-dev.properties
+
+# Keys / certs
+*.pem
+*.key
+*.crt
+secrets/
